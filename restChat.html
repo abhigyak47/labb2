@@ -1,9 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+	   
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script type="text/javascript">
+    function emailInvite() {
+        var email = document.getElementById("email").value;
+        console.log(email);
+	    Email.send({
+    	Host : "smtp.elasticemail.com",
+    	Username : "emailsender917@gmail.com",
+  	  Password : "8F35D6066D0EB510939E6F5BA373EEF15C92",
+   	 To : email,
+   	 From : "emailsender917@gmail.com",
+   	 Subject : "Join my Chat",
+   	 Body : "Hey!! Join me at http://3.128.197.4/restChat/restChat.html"
+	}).then(
+  message => alert("Email Sent :)")
+);
+    }
+</script>
+	   
+	   
+	<style>
+	body {background-image: url("image-min.jpg");background-size: 100% 130%;}
+   	</style>   
+	<style>.chatHeader {border: 5px outset #EC5800;background-color:#d9e3da;color:black;text-align:center;}</style>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta name="description" content="Sample Search Books">
+      <meta name="description" content="Sample#C04000 Search Books">
       <meta name="author" content="James Skon">
       <title>Chat C++</title>
       <!-- Bootstrap core CSS -->
@@ -56,19 +81,31 @@
 </nav>
 
 <div class="container">
-    <h1>A Microservice based chat system!</h1>
+	<div class="chatHeader">
+		<h1>A Microservice based chat system!</h1> </div>
     <span id="status">
+	<div style="float:left; width:30%;background-color:#FFEFD5;color:#880808";>    
       Chat Members: 
-      <span id="members"></span>
+		<br>
+		<span id="members"> 
+			
+			</span>
+			<form> 
+			<label for="email">Invite someone to chat:</label>
+			<input type="email" id="email" name="email" placeholder="email@email.com" required>
+   		        <input type="button" value="Send Email" onclick="emailInvite()" />
+			</form> <br> To send a disappearing message, end it with "_dm"</p>
+		</div>
     </span>
     <p>
 
-	
-    <h2>Chat box</h2>
+<div style="float:right; border:5px outset #7393B3; width:60%;background-color:#e5e4e2;color:#5A5A5A;">
+	<h2>Chat box</h2> </div> <br><br><br>
+	<div style="float:right;width:60%">
     <div class="scrollabletextbox" id="chatBox"></div>
     <span id="chatinput">
-    <textarea id="message" class="form-control" rows="1" cols="60" placeholder="message"></textarea><br />
-    <input type="button" value="Send" id="send-btn" /></p>
+    <textarea id="message" class="form-control" rows="1" cols="60" placeholder="message"></textarea>
+	 <input type="button" value="Send" id="send-btn" /></p></div>
     </span>
 </div>
 
