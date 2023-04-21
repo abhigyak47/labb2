@@ -73,7 +73,7 @@ function registerUser() {
 	usrName = document.getElementById('orangeForm-name').value;
 	usrEmail = document.getElementById('orangeForm-email').value;
 	usrPass = document.getElementById('orangeForm-pass').value;
-	fetch(baseUrl+'/chat/join/'+usrName+'/'+usrEmail+'/'+usrPass, {
+	fetch(baseUrl+'/chat/register/'+usrName+'/'+usrEmail+'/'+usrPass, {
 		method: 'get'
 	})
 	.then (response => response.json() )
