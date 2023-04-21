@@ -69,6 +69,7 @@ function join() {
 }
 
 
+
 function registerUser() {
 	usrName = document.getElementById('orangeForm-name').value;
 	usrEmail = document.getElementById('orangeForm-email').value;
@@ -77,11 +78,22 @@ function registerUser() {
 		method: 'get'
 	})
 	.then (response => response.json() )
-    .then (data =>completeJoin(data))
+    .then (data =>completeRegister(data))
     .catch(error => {
         {alert("Error: Something went wrong:"+error);}
     });
 }
+
+function completeRegister(regStatus) {
+	var status = regStatus['status'];
+	if (status !="success"){
+		alert("Username/Email unavailable. Make sure the password is more than 6 characters");
+		leaveSession();
+		return;
+	}
+	alert("Success");
+}
+	
 
 
 
@@ -258,6 +270,17 @@ function leaveSession(){
     document.getElementById('leave').style.display = 'none';
 	clearInterval(inthandle);
 }
+
+
+
+
+
+
+
+
+
+
+
 
 //To register a user
 
