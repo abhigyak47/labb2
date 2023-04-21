@@ -69,8 +69,19 @@ function join() {
 }
 
 
-
-
+function registerUser() {
+	usrName = document.getElementById('orangeForm-name').value;
+	usrEmail = document.getElementById('orangeForm-email').value;
+	usrPass = document.getElementById('orangeForm-pass').value;
+	fetch(baseUrl+'/chat/join/'+usrName+'/'+usrEmail+'/'+usrPass, {
+		method: 'get'
+	})
+	.then (response => response.json() )
+    .then (data =>completeJoin(data))
+    .catch(error => {
+        {alert("Error: Something went wrong:"+error);}
+    });
+}
 
 
 
