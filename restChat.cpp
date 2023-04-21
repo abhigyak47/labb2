@@ -84,6 +84,22 @@ int main(void) {
     res.set_content(result, "text/json");
   });
   
+	
+svr.Get(R"(/chat/register/(.*)/(.*)/(.*))", [&](const Request& req, Response& res) {
+    res.set_header("Access-Control-Allow-Origin","*");
+	string usrName = req.matches[1];
+	string usrEmail = req.matches[2];
+	string usrPass = req.matches[3];
+	string result; 
+	if (messageMap.count(usrName) or messageMap.count(usrEmail) or messageMap.count(usrPass)<7){
+		result= "{\"status\":\"registrationFailed\"}";
+	} else{
+		result = "{\"status\":\"success\"}";
+	}
+	res.set_content(result,"text/json");
+});
+			
+	
    svr.Get(R"(/chat/fetch/(.*))", [&](const Request& req, Response& res) {
     string username = req.matches[1];
     res.set_header("Access-Control-Allow-Origin","*");
