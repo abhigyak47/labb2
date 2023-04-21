@@ -84,8 +84,8 @@ function registerUser() {
     });
 }
 
-function completeRegister(regStatus) {
-	var status = regStatus['status'];
+function completeRegister(results) {
+	var status = results['status'];
 	if (status !="success"){
 		alert("Username/Email unavailable. Make sure the password is more than 6 characters");
 		leaveSession();
