@@ -43,6 +43,8 @@ int main(void) {
   Server svr;
   int nextUser=0;
   map<string,vector<string>> messageMap;
+  map<string,string> userMap;
+  map<string,string> userEmail;
 	
   /* "/" just returnsAPI name */
   svr.Get("/", [](const Request & /*req*/, Response &res) {
@@ -94,9 +96,10 @@ svr.Get(R"(/chat/register/(.*)/(.*)/(.*))", [&](const Request& req, Response& re
 	if (messageMap.count(usrName) or messageMap.count(usrEmail) or messageMap.count(usrPass)<7){
 		result= "{\"status\":\"registrationFailed\"}";
 	} else{
-		result = "{\"status\":\"success\"}";
-	}
-	res.set_content(result,"text/json");
+		messageMap[usrName]=empty;
+		userEmail[usrName]=usrEmail;
+		addUser(usrName, usrPass, usrEmail, userMap);
+		result = "{\"status\":\"success\",\"user\":\"" + usrName + "\",\"email\":\"" + usrEmail + "\",\"pass\":\"" + usrPass + "\"}";
 });
 			
 	
