@@ -90,7 +90,7 @@ function registerUser() {
 function completeRegister(results) {
 	var status = results['status'];
 	console.log(status);
-	/*if (status =="registrationFailed"){
+	if (status =="registrationFailed"){
 		alert("Username/Email unavailable. Make sure the password is more than 6 characters");
 		leaveSession();
 		return;
@@ -99,7 +99,7 @@ function completeRegister(results) {
 	alert("Success");
 	username=document.getElementById('orangeForm-name').value='';
 	email=document.getElementById('orangeForm-email').value='';
-	password=document.getElementById('orangeForm-pass').value='';*/
+	password=document.getElementById('orangeForm-pass').value='';
 }
 	
 
