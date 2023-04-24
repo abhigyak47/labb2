@@ -171,7 +171,7 @@ function completeFetch(result) {
 	//pushing a new user to the current user array
 	
 	
-	currentUsers.indexOf(messages[0].user) === -1? currentUsers.push(messages[0].user) : console.log("This item already exists"); 
+	/*currentUsers.indexOf(messages[0].user) === -1? currentUsers.push(messages[0].user) : console.log("This item already exists"); 
 	//currentUsers.push(messages[0].user); 
 	
 	//printing the array to dev tools
@@ -181,7 +181,7 @@ function completeFetch(result) {
 	var chatMembers = "<font color='blue'>" + currentUsers + ", </font>";
 		document.getElementById('members').innerHTML=""; 
 		document.getElementById('members').innerHTML +=
-	    	chatMembers; 
+	    	chatMembers; */
 	    	
 	    	
 	//with _dm for disappearing message	
