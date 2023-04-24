@@ -72,10 +72,10 @@ function join() {
 document.getElementById('registerBtn').addEventListener("click",registerUser);
 function registerUser() {
 	console.log("This function is being called")
-	usrName = document.getElementById('orangeForm-name').value;
-	usrEmail = document.getElementById('orangeForm-email').value;
-	usrPass = document.getElementById('orangeForm-pass').value;
-	fetch(baseUrl+'/chat/register/'+usrName+'/'+usrEmail+'/'+usrPass, {
+	username = document.getElementById('orangeForm-name').value;
+	email = document.getElementById('orangeForm-email').value;
+	password = document.getElementById('orangeForm-pass').value;
+	fetch(baseUrl+'/chat/register/'+username+'/'+email+'/'+password, {
 		method: 'get'
 	})
 	.then (response => response.json() )
@@ -94,9 +94,9 @@ function completeRegister(results) {
 	}
 	var user = results['user'];
 	alert("Success");
-	usrName=document.getElementById('orangeForm-name').value='';
-	usrEmail=document.getElementById('orangeForm-email').value='';
-	usrPass=document.getElementById('orangeForm-pass').value='';
+	username=document.getElementById('orangeForm-name').value='';
+	email=document.getElementById('orangeForm-email').value='';
+	password=document.getElementById('orangeForm-pass').value='';
 }
 	
 
