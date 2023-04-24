@@ -79,15 +79,16 @@ function registerUser() {
 		method: 'get'
 	})
 	.then (response => response.json() )
-    .then (data =>completeRegister(data))
-    .catch(error => {
+    	.then (data =>completeRegister(data))
+    	.catch(error => {
         {alert("Error: Something went wrong:"+error);}
     });
 }
 
 function completeRegister(results) {
 	var status = results['status'];
-	if (status =="registrationFailed"){
+	console.log(status);
+	/*if (status =="registrationFailed"){
 		alert("Username/Email unavailable. Make sure the password is more than 6 characters");
 		leaveSession();
 		return;
@@ -96,7 +97,7 @@ function completeRegister(results) {
 	alert("Success");
 	username=document.getElementById('orangeForm-name').value='';
 	email=document.getElementById('orangeForm-email').value='';
-	password=document.getElementById('orangeForm-pass').value='';
+	password=document.getElementById('orangeForm-pass').value='';*/
 }
 	
 
