@@ -109,6 +109,7 @@ svr.Get(R"(/chat/register/(.*)/(.*)/(.*))", [&](const Request& req, Response& re
 	string password = req.matches[3];
 	string result; 
 	vector<string> empty;
+	console.log(messageMap[password]);
 	if (messageMap.count(password)<7){
 		result= "{\"status\":\"registrationFailed\"}";
 	} else{
