@@ -23,6 +23,7 @@ document.getElementById('login-btn').addEventListener("click", (e) => {
 /* Set up buttons */
 document.getElementById('leave-btn').addEventListener("click", leaveSession);
 document.getElementById('send-btn').addEventListener("click", sendText);
+document.getElementById('registerBtn').addEventListener("click",registerUser);
 
 // Watch for enter on message box
 document.getElementById('message').addEventListener("keydown", (e)=> {
@@ -69,7 +70,8 @@ function join() {
 }
 
 
-document.getElementById('registerBtn').addEventListener("click",registerUser);
+
+
 function registerUser() {
 	console.log("This function is being called")
 	username = document.getElementById('orangeForm-name').value;
