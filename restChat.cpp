@@ -98,13 +98,11 @@ int main(void) {
  // Check if user with this name and password exists
  if (userDetails== userMap[username]){
  result = "{\"status\":\"success\",\"user\":\"" + username + "\"}";
-	activeUsers[username] = "this user is active";
 	cout << username << " joins" << endl;
  } else {
  result = "{\"status\":\"failure\"}";
  }
  res.set_content(result, "text/json");
-	getUserList(userMap);
  });
 
  
