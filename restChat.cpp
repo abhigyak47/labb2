@@ -25,6 +25,18 @@ void addMessage(string username, string message, map<string,vector<string>> &mes
 	}
 }
 
+
+
+
+void addUser(string username, string password, string email, map<string,string> &userMap) {
+	string jsonMessage = "{\"user\":\""+username+"\",\"pass\":\""+password+"\",\"email\":\""+email+"\"}";
+	userMap[username] = jsonMessage;
+}
+
+
+
+
+
 string getMessagesJSON(string username, map<string,vector<string>> &messageMap) {
 	/* retrieve json list of messages for this user */
 	bool first = true;
@@ -89,17 +101,17 @@ int main(void) {
 	
 svr.Get(R"(/chat/register/(.*)/(.*)/(.*))", [&](const Request& req, Response& res) {
     res.set_header("Access-Control-Allow-Origin","*");
-	string usrName = req.matches[1];
-	string usrEmail = req.matches[2];
-	string usrPass = req.matches[3];
+	string username = req.matches[1];
+	string email = req.matches[2];
+	string password = req.matches[3];
 	string result; 
-	if (messageMap.count(usrName) or messageMap.count(usrEmail) or messageMap.count(usrPass)<7){
+	if (messageMap.count(username) or messageMap.count(email) or messageMap.count(password)<7){
 		result= "{\"status\":\"registrationFailed\"}";
 	} else{
-		messageMap[usrName]=empty;
-		userEmail[usrName]=usrEmail;
-		addUser(usrName, usrPass, usrEmail, userMap);
-		result = "{\"status\":\"success\",\"user\":\"" + usrName + "\",\"email\":\"" + usrEmail + "\",\"pass\":\"" + usrPass + "\"}";
+		messageMap[username]=empty;
+		userEmail[username]=email;
+		addUser(username, password, email, userMap);
+		result = "{\"status\":\"success\",\"user\":\"" + username + "\",\"email\":\"" + email + "\",\"pass\":\"" + password + "\"}";
 });
 			
 	
