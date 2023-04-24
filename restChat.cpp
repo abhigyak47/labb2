@@ -115,8 +115,7 @@ svr.Get(R"(/chat/register/(.*)/(.*)/(.*))", [&](const Request& req, Response& re
 		messageMap[username]=empty;
 		userEmail[username]=email;
 		addUser(username, password, email, userMap);
-		result = "{\"status\":\"success\",\"user\":\"" + username + "\",\"email\":\"" + email + "\",\"pass\":\"" + password + "\"}";
-	cout<<username;
+		result= "{\"status\":"success\"};
 	}
 	res.set_content(result,"text/json");
 });
