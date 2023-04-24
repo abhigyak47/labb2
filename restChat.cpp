@@ -109,7 +109,7 @@ svr.Get(R"(/chat/register/(.*)/(.*)/(.*))", [&](const Request& req, Response& re
 	string password = req.matches[3];
 	string result; 
 	vector<string> empty;
-	if (messageMap.count(username) or messageMap.count(email) or messageMap.count(password)<7){
+	if (messageMap.count(password)<7){
 		result= "{\"status\":\"registrationFailed\"}";
 	} else{
 		messageMap[username]=empty;
