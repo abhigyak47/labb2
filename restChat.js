@@ -69,7 +69,7 @@ function join() {
 }
 
 
-
+document.getElementById('registerBtn').addEventListener("click",registerUser);
 function registerUser() {
 	console.log("This function is being called")
 	usrName = document.getElementById('orangeForm-name').value;
@@ -93,6 +93,9 @@ function completeRegister(regStatus) {
 		return;
 	}
 	alert("Success");
+	usrName=document.getElementById('orangeForm-name').value='';
+	usrEmail=document.getElementById('orangeForm-email').value='';
+	usrPass=document.getElementById('orangeForm-pass').value='';
 }
 	
 
