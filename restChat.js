@@ -92,6 +92,7 @@ function completeRegister(results) {
 		leaveSession();
 		return;
 	}
+	var user = results['user'];
 	alert("Success");
 	usrName=document.getElementById('orangeForm-name').value='';
 	usrEmail=document.getElementById('orangeForm-email').value='';
