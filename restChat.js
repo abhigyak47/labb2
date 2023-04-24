@@ -38,24 +38,22 @@ window.onbeforeunload = leaveSession;
 
 
 function completeJoin(results) {
-	var status = results['status'];
-	if (status != "success") {
-		alert("Incorrect Username/Pass! Register if you haven't already");
-		leaveSession();
-		return;
-	}
-	var user = results['user'];
-	console.log("Join:"+user);
-	currentUsers.indexOf(user) === -1? currentUsers.push(user) : console.log("This item already exists"); 
-	//currentUsers.push(messages[0].user); 
-	//printing the array to dev tools
-	//console.log(currentUsers); 
-	var chatMembers = "<font color='blue'>" + currentUsers + ", </font>";
-		document.getElementById('members').innerHTML=""; 
-		document.getElementById('members').innerHTML +=
-	    	chatMembers; 
-	startSession(user);
+    var status = results['status'];
+    if (status != "success") {
+        alert("Incorrect Username/Pass! Register if you haven't already");
+        leaveSession();
+        return;
+    }
+    var user = results['user'];
+    console.log("Join:"+user);
+    if (!currentUsers.includes(user)) {
+        currentUsers.push(user);
+    }
+    var chatMembers = "<font color='blue'>" + currentUsers.join(", ") + "</font>";
+    document.getElementById('members').innerHTML = chatMembers;
+    startSession(user);
 }
+
 
 function join() {
 	myname = document.getElementById('yourname').value;
@@ -249,45 +247,33 @@ function startSession(name){
     inthandle=setInterval(fetchMessage,500);
 }
 
-function leaveSession(){
-    state="off";
-    
-    //we want: when the user presses the leave button, we want that user to get subtracted from the array of currentUsers, then we want to update the screen 
-    
-    //this should output the current user
-    console.log(myname); 
-    
-    //now, deleting myname from the array currentUsers and reupdating what is displayed
-    const index = currentUsers.indexOf(myname); 
-    
-    if (index > -1){ //only splice array when item is found 
-    	currentUsers.splice(index, 1); 
-    }
-    
-    console.log(currentUsers); 
-    
-	var remainingMembers = "<font color='blue'>" + currentUsers + ", </font>";
-		document.getElementById('members').innerHTML=""; 
-		document.getElementById('members').innerHTML +=
-	    	remainingMembers; 
-	    	
-    document.getElementById('yourname').value = "";
-    document.getElementById('register').style.display = 'block';
-    document.getElementById('user').innerHTML = "";
-    document.getElementById('chatinput').style.display = 'none';
-    document.getElementById('status').style.display = 'none';
-    document.getElementById('leave').style.display = 'none';
-	clearInterval(inthandle);
+function leaveSession() {
+    clearInterval(inthandle);
+    fetch(baseUrl+'/chat/leave/'+myname, {
+        method: 'get'
+    })
+    .then (response => response.json() )
+    .then (data => {
+        var status = data['status'];
+        if (status == "success") {
+            console.log("Left:"+myname);
+            // Remove user from current users
+            currentUsers.splice(currentUsers.indexOf(myname), 1);
+            // Update members list on UI
+            var chatMembers = "<font color='blue'>" + currentUsers.join(", ") + "</font>";
+            document.getElementById('members').innerHTML = chatMembers;
+            myname = "";
+            document.getElementById('chatinput').style.display = 'none';
+            document.getElementById('status').style.display = 'none';
+            document.getElementById('leave').style.display = 'none';
+            document.getElementById('yourname').value = "";
+            document.getElementById('yourpass').value = "";
+        }
+    })
+    .catch(error => {
+        {alert("Error: Something went wrong:"+error);}
+    }) 
 }
-
-
-
-
-
-
-
-
-
 
 
 
