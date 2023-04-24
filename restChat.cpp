@@ -65,23 +65,26 @@ int main(void) {
   });
 
 
-  svr.Get(R"(/chat/join/(.*))", [&](const Request& req, Response& res) {
-    res.set_header("Access-Control-Allow-Origin","*");
-    string username = req.matches[1];
-    string result;
-    vector<string> empty;
-    cout << username << " joins" << endl;
-    
-    // Check if user with this name exists
-    if (messageMap.count(username)) {
-    	result = "{\"status\":\"exists\"}";
-    } else {
-    	// Add user to messages map
-    	messageMap[username]=empty;
-    	result = "{\"status\":\"success\",\"user\":\"" + username + "\"}";
-    }
-    res.set_content(result, "text/json");
-  });
+	
+svr.Get(R"(/chat/join/(.*)/(.*))", [&](const Request& req, Response& res) {
+ res.set_header("Access-Control-Allow-Origin","*");
+ string username = req.matches[1];
+ string password = req.matches[2];
+ string email = userEmail[username];
+ string userDetails = "{\"user\":\""+username+"\",\"pass\":\""+password+"\",\"email\":\""+email+"\"}";
+	
+ string result;
+ // Check if user with this name and password exists
+ if (userDetails == userMap[username]){
+ result = "{\"status\":\"success\",\"user\":\"" + username + "\"}";
+ cout << username << " joins" << endl;
+ } else {
+ result = "{\"status\":\"failure\"}";
+ }
+ res.set_content(result, "text/json");
+ });
+	
+	
 
    svr.Get(R"(/chat/send/(.*)/(.*))", [&](const Request& req, Response& res) {
     res.set_header("Access-Control-Allow-Origin","*");
