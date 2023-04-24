@@ -87,7 +87,7 @@ function registerUser() {
 
 function completeRegister(results) {
 	var status = results['status'];
-	if (status !="success"){
+	if (status =="registrationFailed"){
 		alert("Username/Email unavailable. Make sure the password is more than 6 characters");
 		leaveSession();
 		return;
