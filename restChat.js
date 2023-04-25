@@ -135,6 +135,7 @@ function completeSend(results) {
 //function called on submit or enter on text input
 function sendText() {
     var message = document.getElementById('message').value;
+    document.getElementById('message').value = "";
     console.log("Send: "+myname+":"+message);
 	fetch(baseUrl+'/chat/send/'+myname+'/'+message, {
         method: 'get'
