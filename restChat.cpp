@@ -134,7 +134,7 @@ int main(void) {
  res.set_header("Access-Control-Allow-Origin","*");
  string result;
  result=userMap;
- res.set_content(resultJSON, "text/json");
+ res.set_content(result, "text/json");
  });
 
  
