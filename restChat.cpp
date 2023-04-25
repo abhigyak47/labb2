@@ -130,15 +130,18 @@ int main(void) {
  });
  
 	
- svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
- res.set_header("Access-Control-Allow-Origin","*"); 
- string result;
+svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
+    res.set_header("Access-Control-Allow-Origin", "*");
+    res.set_header("Content-Type", "text/json");
+    
+    json result;
     for (const auto& [username, userdata] : userMap) {
         result.push_back(username);
     }
     
-    res.set_content(result, "string");
- });
+    res.set_content(result.dump(), "text/json");
+});
+
 
  
  cout << "Server listening on port " << port << endl;
