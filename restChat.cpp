@@ -12,6 +12,8 @@
 #include <string>
 #include "httplib.h"
 #include <vector>
+#include <nlohmann/json.hpp>
+
 
 using namespace httplib;
 using namespace std;
