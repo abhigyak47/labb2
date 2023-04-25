@@ -137,13 +137,12 @@ svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
     
     string result = "{ \"users\": [";
     for (const auto& [username, userdata] : userMap) {
-    result += "\"" + username + "\", ";
-}
-if (!userMap.empty()) {
-    result.erase(result.length() - 2);
-}
-result += "] }";
+        result += "\"" + username + "\", ";
     }
+    if (!userMap.empty()) {
+        result.erase(result.length() - 2);
+    }
+    result += "] }";
     
     res.set_content(result, "text/json");
 });
