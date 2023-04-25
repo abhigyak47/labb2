@@ -46,9 +46,8 @@ function completeJoin(results) {
     }
     var user = results['user'];
     console.log(user+"joins");
-    fetchUsers();
-    var chatMembers = "<font color='blue'>" + currentUsers.join(", ") + "</font>";
-    document.getElementById('members').innerHTML = chatMembers;
+    /*fetchUsers();*/
+    inthandle=setInterval(fetchUsers,500);
     startSession(user);
 }
 
