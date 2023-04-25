@@ -131,7 +131,7 @@ int main(void) {
  });
  
 	
-svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
+/*svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
     res.set_header("Access-Control-Allow-Origin", "*");
     res.set_header("Content-Type", "text/json");
     
@@ -145,7 +145,7 @@ svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
     result += "] }";
     
     res.set_content(result, "text/json");
-});
+});*/
 
 
  
