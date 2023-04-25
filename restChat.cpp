@@ -66,7 +66,7 @@ int main(void) {
  });
 
 
- 
+ //microservice for registration with username, email and password
  svr.Get(R"(/chat/register/(.*)/(.*)/(.*))", [&](const Request& req, Response& res) {
 	res.set_header("Access-Control-Allow-Origin","*");
  	string username = req.matches[1];
@@ -87,7 +87,7 @@ int main(void) {
  });
  
  
-
+//edited for joining with username and password
  svr.Get(R"(/chat/join/(.*)/(.*))", [&](const Request& req, Response& res) {
  res.set_header("Access-Control-Allow-Origin","*");
  	string username = req.matches[1];
@@ -130,7 +130,7 @@ int main(void) {
  res.set_content(resultJSON, "text/json");
  });
  
-	
+//microservice for setting up user list in json	
 svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
     res.set_header("Access-Control-Allow-Origin", "*");
     res.set_header("Content-Type", "text/json");
