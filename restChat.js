@@ -245,7 +245,7 @@ function fetchUsers() {
 }
 function updateUser(result) {
 	currentUsers = result["userList"];
-	document.getElementById('members').innerHTML = currentUsers;
+	console.log(currentUsers);
 }
 	
 	
