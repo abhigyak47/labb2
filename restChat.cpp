@@ -12,7 +12,6 @@
 #include <string>
 #include "httplib.h"
 #include <vector>
-#include <nlohmann/json.hpp>
 
 
 using namespace httplib;
@@ -136,12 +135,17 @@ svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
     res.set_header("Access-Control-Allow-Origin", "*");
     res.set_header("Content-Type", "text/json");
     
-    json result;
+    string result = "{ \"users\": [";
     for (const auto& [username, userdata] : userMap) {
-        result.push_back(username);
+    result += "\"" + username + "\", ";
+}
+if (!userMap.empty()) {
+    result.erase(result.length() - 2);
+}
+result += "] }";
     }
     
-    res.set_content(result.dump(), "text/json");
+    res.set_content(result, "text/json");
 });
 
 
