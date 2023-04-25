@@ -46,13 +46,30 @@ function completeJoin(results) {
     }
     var user = results['user'];
     console.log(user+"joins");
-
-	
-	
+    fetchUsers();
     var chatMembers = "<font color='blue'>" + currentUsers.join(", ") + "</font>";
     document.getElementById('members').innerHTML = chatMembers;
     startSession(user);
 }
+
+
+/* Check for new users */	
+function fetchUsers() {
+	fetch(baseUrl+'/chat/users', {
+        method: 'get'
+    })
+    .then (response => response.json() )
+    .then (data =>updateUser(data))
+    .catch(error => {
+        {alert("Error: Something went wrong:"+error);}
+    })
+}
+
+function updateUser(result) {
+	var currentUsers = result["users"];
+	console.log(currentUsers);
+}
+	
 
 
 function join() {
@@ -156,13 +173,6 @@ function disappearingSend(){{
 
 
 
-
-
-
-
-
-
-
 function completeFetch(result) {
 	messages = result["messages"];
 	
@@ -232,22 +242,7 @@ function fetchMessage() {
     })  
    
 	
-/* Check for new users */	
-function fetchUsers() {
-	fetch(baseUrl+'/chat/users', {
-        method: 'get'
-    })
-    .then (response => response.json() )
-    .then (data =>updateUser(data))
-    .catch(error => {
-        {alert("Error: Something went wrong:"+error);}
-    })
-}
-function updateUser(result) {
-	var currentUsers = result["users"];
-	console.log(currentUsers);
-}
-	
+
 	
     	
 }
@@ -263,8 +258,6 @@ function startSession(name){
     document.getElementById('leave').style.display = 'block';        
     /* Check for messages every 500 ms */
     inthandle=setInterval(fetchMessage,500);
-    /* Check for users every 500 ms */
-    inthandle=setInterval(fetchUsers,500);
 }
 
 function leaveSession() {
