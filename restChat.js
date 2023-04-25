@@ -261,26 +261,16 @@ function startSession(name){
     inthandle=setInterval(fetchMessage,500);
 }
 
-function leaveSession() {
-    clearInterval(inthandle);
-    fetch(baseUrl+'/chat/leave/'+myname, {
-        method: 'get'
-    })
-    .then (response => response.json() )
-    .then (data => {
-        var status = data['status'];
-        if (status == "success") {
-            console.log("Left:"+myname);
-            document.getElementById('chatinput').style.display = 'none';
-            document.getElementById('status').style.display = 'none';
-            document.getElementById('leave').style.display = 'none';
-            document.getElementById('yourname').value = "";
-            document.getElementById('yourpass').value = "";
-        }
-    })
-    .catch(error => {
-        {alert("Error: Something went wrong:"+error);}
-    }) 
+function leaveSession(){
+    state="off";
+    
+    document.getElementById('yourname').value = "";
+    document.getElementById('register').style.display = 'block';
+    document.getElementById('user').innerHTML = "";
+    document.getElementById('chatinput').style.display = 'none';
+    document.getElementById('status').style.display = 'none';
+    document.getElementById('leave').style.display = 'none';
+	clearInterval(inthandle);
 }
 
 
