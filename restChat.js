@@ -45,10 +45,11 @@ function completeJoin(results) {
         return;
     }
     var user = results['user'];
-    console.log("Join:"+user);
+    console.log(user+"joins");
     if (!currentUsers.includes(user)) {
         currentUsers.push(user);
     }
+	console.log(currentUsers);
     var chatMembers = "<font color='blue'>" + currentUsers.join(", ") + "</font>";
     document.getElementById('members').innerHTML = chatMembers;
     startSession(user);
