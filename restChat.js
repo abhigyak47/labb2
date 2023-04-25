@@ -271,7 +271,6 @@ function leaveSession() {
         var status = data['status'];
         if (status == "success") {
             console.log("Left:"+myname);
-            myname = "";
             document.getElementById('chatinput').style.display = 'none';
             document.getElementById('status').style.display = 'none';
             document.getElementById('leave').style.display = 'none';
