@@ -46,10 +46,9 @@ function completeJoin(results) {
     }
     var user = results['user'];
     console.log(user+"joins");
-    if (!currentUsers.includes(user)) {
-        currentUsers.push(user);
-    }
-	console.log(currentUsers);
+
+	
+	
     var chatMembers = "<font color='blue'>" + currentUsers.join(", ") + "</font>";
     document.getElementById('members').innerHTML = chatMembers;
     startSession(user);
@@ -231,7 +230,25 @@ function fetchMessage() {
     .catch(error => {
         {console.log("Server appears down");}
     })  
-    
+   
+	
+/* Check for new users */	
+function fetchUsers() {
+	fetch(baseUrl+'/chat/userlist', {
+        method: 'get'
+    })
+    .then (response => response.json() )
+    .then (data =>updateUser(data))
+    .catch(error => {
+        {alert("Error: Something went wrong:"+error);}
+    })
+}
+function updateUser(result) {
+	currentUsers = result["userList"];
+	document.getElementById('members').innerHTML = currentUsers;
+}
+	
+	
     	
 }
 /* Functions to set up visibility of sections of the display */
@@ -246,6 +263,8 @@ function startSession(name){
     document.getElementById('leave').style.display = 'block';        
     /* Check for messages every 500 ms */
     inthandle=setInterval(fetchMessage,500);
+    /* Check for users every 500 ms */
+    inthandle=setInterval(fetchUsers,500);
 }
 
 function leaveSession() {
@@ -258,11 +277,6 @@ function leaveSession() {
         var status = data['status'];
         if (status == "success") {
             console.log("Left:"+myname);
-            // Remove user from current users
-            currentUsers.splice(currentUsers.indexOf(myname), 1);
-            // Update members list on UI
-            var chatMembers = "<font color='blue'>" + currentUsers.join(", ") + "</font>";
-            document.getElementById('members').innerHTML = chatMembers;
             myname = "";
             document.getElementById('chatinput').style.display = 'none';
             document.getElementById('status').style.display = 'none';
