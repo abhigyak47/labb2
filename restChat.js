@@ -234,7 +234,7 @@ function fetchMessage() {
 	
 /* Check for new users */	
 function fetchUsers() {
-	fetch(baseUrl+'/chat/userlist', {
+	fetch(baseUrl+'/chat/users', {
         method: 'get'
     })
     .then (response => response.json() )
