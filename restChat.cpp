@@ -131,14 +131,13 @@ int main(void) {
  
 	
  svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
- res.set_header("Access-Control-Allow-Origin","*");
-	 
-json result;
+ res.set_header("Access-Control-Allow-Origin","*"); 
+ string result;
     for (const auto& [username, userdata] : userMap) {
         result.push_back(username);
     }
     
-    res.set_content(result.dump(), "text/json");
+    res.set_content(result, "string");
  });
 
  
