@@ -130,7 +130,7 @@ int main(void) {
  res.set_content(resultJSON, "text/json");
  });
  
-/*	
+	
 svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
     res.set_header("Access-Control-Allow-Origin", "*");
     res.set_header("Content-Type", "text/json");
@@ -146,7 +146,7 @@ svr.Get(R"(/chat/users)", [&](const Request& req, Response& res) {
     
     res.set_content(result, "text/json");
 });
-*/
+
 
  
  cout << "Server listening on port " << port << endl;
