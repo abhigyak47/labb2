@@ -47,7 +47,7 @@ function completeJoin(results) {
     var user = results['user'];
     console.log(user+"joins");
     /*fetchUsers();*/
-    inthandle=setInterval(fetchUsers,500);
+    inthandle=setInterval(fetchUsers,500);   /*to check for new users every 500ms*/
     startSession(user);
 }
 
@@ -64,6 +64,7 @@ function fetchUsers() {
     })
 }
 
+/*Dynamically update the user list*/
 function updateUser(result) {
   var currentUsers = result["users"];
   console.log(currentUsers);
@@ -88,7 +89,7 @@ function join() {
 
 
 
-
+/*For registration*/
 function registerUser() {
 	console.log("This function is being called")
 	username = document.getElementById('orangeForm-name').value;
