@@ -66,10 +66,11 @@ function fetchUsers() {
 }
 
 function updateUser(result) {
-	var currentUsers = result["users"];
-	console.log(currentUsers);
-	document.getElementById('members')=currentUsers.toString();
+  var currentUsers = result["users"];
+  console.log(currentUsers);
+  document.getElementById('members').innerHTML = currentUsers.toString();
 }
+
 	
 
 
