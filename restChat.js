@@ -262,9 +262,8 @@ function startSession(name){
     inthandle=setInterval(fetchMessage,500);
 }
 
-function leaveSession(){
+/*function leaveSession(){
     state="off";
-    
     document.getElementById('yourname').value = "";
     document.getElementById('register').style.display = 'block';
     document.getElementById('user').innerHTML = "";
@@ -272,7 +271,36 @@ function leaveSession(){
     document.getElementById('status').style.display = 'none';
     document.getElementById('leave').style.display = 'none';
 	clearInterval(inthandle);
+}*/
+
+function leaveSession() {
+    clearInterval(inthandle);
+    fetch(baseUrl+'/chat/leave/'+myname, {
+        method: 'get'
+    })
+    .then (response => response.json() )
+    .then (data => {
+        var status = data['status'];
+        if (status == "success") {
+            console.log("Leave succeeded");
+            
+            // Remove user from currentUsers array
+            const index = currentUsers.indexOf(myname);
+            if (index > -1) {
+              currentUsers.splice(index, 1);
+            }
+            
+            // Update member id with remaining users
+            document.getElementById('members').innerHTML = currentUsers.toString();
+        } else {
+            alert("Error leaving session!");
+        }
+    })
+    .catch(error => {
+        {alert("Error: Something went wrong:"+error);}
+    })
 }
+
 
 
 
