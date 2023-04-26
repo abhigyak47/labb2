@@ -65,11 +65,21 @@ function fetchUsers() {
 }
 
 /*Dynamically update the user list*/
-function updateUser(result) {
+/*function updateUser(result) {
   var currentUsers = result["users"];
   console.log(currentUsers);
   document.getElementById('members').innerHTML = currentUsers.toString();
+}*/
+
+function updateUser(result) {
+  const newUsers = result.users;
+  const removedUsers = currentUsers.filter(user => !newUsers.includes(user));
+  const addedUsers = newUsers.filter(user => !currentUsers.includes(user));
+  currentUsers = newUsers;
+  console.log(currentUsers);
+  document.getElementById('members').textContent = currentUsers.join(", ");
 }
+
 
 	
 
