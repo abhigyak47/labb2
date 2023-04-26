@@ -72,6 +72,7 @@ function fetchUsers() {
 }*/
 
 function updateUser(result) {
+    inthandle=setInterval(fetchUsers,500)
     var newUsers = result["users"];
     var removedUsers = currentUsers.filter(user => !newUsers.includes(user));
     var addedUsers = newUsers.filter(user => !currentUsers.includes(user));
