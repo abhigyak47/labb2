@@ -72,12 +72,22 @@ function fetchUsers() {
 }*/
 
 function updateUser(result) {
-  const newUsers = result.users;
-  const removedUsers = currentUsers.filter(user => !newUsers.includes(user));
-  const addedUsers = newUsers.filter(user => !currentUsers.includes(user));
-  currentUsers = newUsers;
-  console.log(currentUsers);
-  document.getElementById('members').textContent = currentUsers.join(", ");
+    var newUsers = result["users"];
+    var removedUsers = currentUsers.filter(user => !newUsers.includes(user));
+    var addedUsers = newUsers.filter(user => !currentUsers.includes(user));
+    removedUsers.forEach(user => {
+        var index = currentUsers.indexOf(user);
+        if (index !== -1) {
+            currentUsers.splice(index, 1);
+        }
+    });
+    addedUsers.forEach(user => {
+        if (!currentUsers.includes(user)) {
+            currentUsers.push(user);
+        }
+    });
+    console.log(currentUsers);
+    document.getElementById('members').innerHTML = currentUsers.join(", ");
 }
 
 
