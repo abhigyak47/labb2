@@ -264,6 +264,9 @@ function startSession(name){
 }
 
 function leaveSession(){
+    fetch(baseUrl+'/chat/users/remove/'+myname, {
+        method: 'get'
+    })
     state="off";
     document.getElementById('yourname').value = "";
     document.getElementById('register').style.display = 'block';
