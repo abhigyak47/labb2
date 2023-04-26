@@ -263,6 +263,13 @@ function startSession(name){
 }
 
 function leaveSession(){
+	document.getElementById('members').innerHTML = '';
+     var userArray = currentUsers;
+    let index = userArray.indexOf(document.getElementById('yourname').value);
+    if (index !== -1) {
+    userArray.splice(index, 1);
+}
+    document.getElementById('members').innerHTML = userArray.toString();
     state="off";
     document.getElementById('yourname').value = "";
     document.getElementById('register').style.display = 'block';
