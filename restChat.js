@@ -265,20 +265,6 @@ function startSession(name){
 
 function leaveSession(){
     state="off";
-    
-    const index = currentUsers.indexOf(myname); 
-    
-    if (index > -1){ //only splice array when item is found 
-    	currentUsers.splice(index, 1); 
-    }
-    
-    console.log(currentUsers); 
-    
-	var remainingMembers = "<font color='blue'>" + currentUsers + ", </font>";
-		document.getElementById('members').innerHTML=""; 
-		document.getElementById('members').innerHTML +=
-	    	remainingMembers; 
-	
     document.getElementById('yourname').value = "";
     document.getElementById('register').style.display = 'block';
     document.getElementById('user').innerHTML = "";
