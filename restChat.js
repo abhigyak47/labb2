@@ -65,33 +65,11 @@ function fetchUsers() {
 }
 
 /*Dynamically update the user list*/
-/*function updateUser(result) {
+function updateUser(result) {
   var currentUsers = result["users"];
   console.log(currentUsers);
   document.getElementById('members').innerHTML = currentUsers.toString();
-}*/
-
-function updateUser(result) {
-    inthandle=setInterval(fetchUsers,500)
-    var newUsers = result["users"];
-    var removedUsers = currentUsers.filter(user => !newUsers.includes(user));
-    var addedUsers = newUsers.filter(user => !currentUsers.includes(user));
-    removedUsers.forEach(user => {
-        var index = currentUsers.indexOf(user);
-        if (index !== -1) {
-            currentUsers.splice(index, 1);
-        }
-    });
-    addedUsers.forEach(user => {
-        if (!currentUsers.includes(user)) {
-            currentUsers.push(user);
-        }
-    });
-    console.log(currentUsers);
-    document.getElementById('members').innerHTML = currentUsers.join(", ");
 }
-
-
 	
 
 
